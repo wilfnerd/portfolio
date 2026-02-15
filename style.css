@@ -7,12 +7,12 @@
     --border: #30363d;
 }
 
-/* 1. GLOBAL RESET */
+/* BASE RESET - The Foundation of "No Shifting" */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
     width: 100%;
-    overflow-x: hidden; /* Stops horizontal scrolling/shifting */
+    overflow-x: hidden;
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
@@ -23,88 +23,122 @@ html, body {
     width: 90%; 
     max-width: 1100px; 
     margin: 0 auto; 
+    position: relative;
 }
 
-/* 2. NAVIGATION - THE "FIXED" VERSION */
+/* NAVIGATION - Mobile Scaling Strategy */
 .nav {
     background: rgba(13, 17, 23, 0.98);
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 0.8rem 0;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--border);
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .nav-inner { 
     display: flex; 
     justify-content: space-between; 
-    align-items: center;
+    align-items: center; 
 }
 
 .logo { 
     font-weight: 800; 
-    font-size: 1rem; 
+    font-size: clamp(0.9rem, 4vw, 1.2rem); 
     color: #fff; 
-    flex-shrink: 0; /* Prevents logo from shrinking */
-    margin-right: 10px;
+    white-space: nowrap;
 }
 .logo span { color: var(--accent-blue); }
 
 nav { 
     display: flex; 
-    align-items: center;
-    gap: 15px; /* Modern spacing that adapts */
+    align-items: center; 
+    gap: clamp(10px, 3vw, 25px); 
 }
 
 nav a { 
     text-decoration: none; 
     color: var(--text-dim); 
-    font-size: 0.75rem; 
+    font-size: clamp(0.65rem, 2.5vw, 0.85rem); 
     font-weight: 600; 
     text-transform: uppercase;
-    white-space: nowrap; /* Prevents links from breaking into two lines */
+    transition: 0.3s;
 }
+
+nav a:hover { color: #fff; }
 
 .nav-cta { 
     color: var(--accent-blue) !important; 
     border: 1px solid var(--accent-blue); 
-    padding: 6px 12px; 
-    border-radius: 4px;
-    flex-shrink: 0;
+    padding: 4px 10px; 
+    border-radius: 4px; 
 }
 
-/* 3. HERO SECTION */
-.hero { padding: 140px 0 60px 0; }
-.hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+/* HERO */
+.hero { padding: clamp(120px, 15vh, 180px) 0 80px 0; }
+.intro-badge { color: var(--accent-blue); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(2rem, 7vw, 3.8rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 1.5rem; }
 .text-gradient { background: linear-gradient(to right, #fff, var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero-sub { color: var(--text-dim); margin-bottom: 2rem; max-width: 600px; }
+.hero-sub { font-size: 1.1rem; color: var(--text-dim); max-width: 700px; margin-bottom: 2.5rem; }
 
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-.btn { padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 4px; font-weight: 700; font-size: 0.9rem; text-align: center; min-width: 160px; }
+.btn { padding: 0.8rem 1.8rem; text-decoration: none; border-radius: 4px; font-weight: 700; font-size: 0.9rem; transition: 0.3s; text-align: center; }
 .primary { background: var(--accent-blue); color: #fff; }
 .secondary { border: 1px solid var(--border); color: #fff; }
 
-/* 4. SECTIONS & GRIDS */
-.section { padding: 60px 0; border-bottom: 1px solid var(--border); }
-.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+/* SECTIONS */
+.section { padding: 80px 0; }
+.dark-alt { background: #0b0e14; }
+.border-bottom { border-bottom: 1px solid var(--border); }
+.section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 2rem; }
+.center { text-align: center; }
 
-.project-card { background: var(--card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; }
-.project-img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem; border: 1px solid var(--border); }
-.tech-stack span { font-size: 0.7rem; color: var(--accent-blue); background: rgba(58, 134, 255, 0.1); padding: 4px 8px; border-radius: 4px; margin-right: 5px; }
+/* GRIDS */
+.about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 
-/* 5. CONTACT */
-.mail-link { font-size: clamp(1rem, 5vw, 2.2rem); color: #fff; text-decoration: none; font-weight: 800; word-break: break-all; }
+/* CARDS */
+.expertise-card, .project-card { 
+    background: var(--card); 
+    padding: 2rem; 
+    border-radius: 8px; 
+    border: 1px solid var(--border); 
+}
 
-/* 6. MOBILE OVERRIDE - THE ULTIMATE FIX */
+.project-img { 
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover; 
+    border-radius: 6px; 
+    margin-bottom: 1.2rem; 
+    border: 1px solid var(--border); 
+}
+
+.tech-stack span { 
+    font-size: 0.7rem; 
+    color: var(--accent-blue); 
+    background: rgba(58, 134, 255, 0.1); 
+    padding: 4px 10px; 
+    border-radius: 4px; 
+    margin-right: 6px; 
+    display: inline-block; 
+    margin-bottom: 8px;
+}
+
+.project-link { margin-top: 1rem; display: block; color: #fff; text-decoration: none; font-weight: 700; border-bottom: 1px solid var(--accent-blue); width: max-content; }
+
+/* CONTACT */
+.mail-link { font-size: clamp(1.1rem, 5vw, 2.5rem); color: #fff; text-decoration: none; font-weight: 800; word-break: break-all; }
+.location-tag { margin-top: 10px; color: var(--text-dim); }
+
+footer { padding: 3rem 0; border-top: 1px solid var(--border); color: #484f58; font-size: 0.85rem; text-align: center; }
+
+/* MOBILE SPECIFIC REFINEMENT */
 @media (max-width: 600px) {
-    /* If the screen is too small, we hide 'Profile' to keep 'Projects' and 'Contact' visible */
-    nav a[href="#about"] { display: none; }
-    
-    nav { gap: 10px; }
-    .logo { font-size: 0.9rem; }
-    
-    .hero { padding-top: 100px; }
-    .btn { width: 100%; } /* Stack buttons on mobile */
+    .container { width: 92%; }
+    .hero-buttons .btn { width: 100%; }
+    .section { padding: 60px 0; }
+    .nav { padding: 0.6rem 0; }
 }
