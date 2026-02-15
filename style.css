@@ -166,3 +166,30 @@ footer { padding: 3rem 0; border-top: 1px solid var(--border); color: #484f58; f
     
     .about-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
+@media (max-width: 768px) {
+    .nav-inner {
+        flex-direction: row; /* Keep logo and nav on one line */
+        justify-content: space-between;
+        padding: 0 5%;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Reduced gap to save space */
+    }
+
+    nav a {
+        margin-left: 0;
+        font-size: 0.65rem; /* Smaller text for mobile */
+    }
+
+    .nav-cta {
+        padding: 4px 8px; /* Slimmer button */
+        font-size: 0.65rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+}
